@@ -29,33 +29,33 @@ pip install numpy opencv-python tensorflow scikit-learn
 ## Usage
 
 1. **Load Dataset**
-
+```
 train_Q, train_A, train_I = get_data(dataset_path, train=True)  
 test_Q, test_A, test_I = get_data(dataset_path, train=False)  
 mcq_answers_choices = get_answers_labels(dataset_path)
-
+```
 2. **Split Data**
-
+```
 from sklearn.model_selection import train_test_split  
 trainQ, valQ, trainA, valA, trainI, valI = train_test_split(  
     train_Q, train_A, train_I, test_size=0.2, random_state=42  
 )
-
+```
 3. **Build Model**
-
+```
 model = build_model(image_shape=(64,64,3), vocab_size=len(tokenizer.word_index)+1, num_answers=len(mcq_answers_choices))  
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
+```
 4. **Prepare Dataset Pipeline**
-
+```
 ds = DatasetPipe(tokenizer, mcq_answers_choices, 64, 64)  
 train_ds = ds.tf_dataset(trainQ, trainA, trainI, batch_size=32)  
 val_ds = ds.tf_dataset(valQ, valA, valI, batch_size=32)
-
+```
 5. **Train Model**
-
+```
 model.fit(train_ds, validation_data=val_ds, epochs=20, callbacks=callbacks)
-
+```
 **Callbacks**:
 
 - ModelCheckpoint – save best model.
