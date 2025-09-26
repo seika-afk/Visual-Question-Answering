@@ -9,18 +9,6 @@ This project implements a simple **Visual Question Answering (VQA)** pipeline us
 - **Framework**: TensorFlow / Keras.
 - **Output**: Predicted answer for a given image-question pair.
 
-## Folder Structure (From Google collab)/after training
-
-data/
-  ├── train/
-  │   ├── images/
-  │   └── questions.json
-  ├── test/
-  │   ├── images/
-  │   └── questions.json
-  └── answers.txt
-files/
-  └── model.h5
 
 ## Dependencies
 
